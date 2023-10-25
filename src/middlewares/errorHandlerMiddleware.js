@@ -5,7 +5,7 @@ const errorHandlerMiddleware = async (err, req, res, next) => {
   if (err instanceof ConflictError || err instanceof UnauthorizedError) {
     return res.status(err.statusCode).json({ message: err.message });
   } else {
-    if (err.errors[0].message !== undefined || err.errors[0].message !== null) {
+    if (err.errors[0] !== undefined || err.errors[0] !== null) {
       return res.status(StatusCodes.BAD_REQUEST).json({ message: err.errors[0].message });
     } else {
       console.log(err);
