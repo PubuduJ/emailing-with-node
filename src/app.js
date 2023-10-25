@@ -5,6 +5,7 @@ require("express-async-errors");
 const {db} = require("./models");
 const notFoundMiddleware = require("./middlewares/notFoundMiddleware");
 const errorHandlerMiddleware = require("./middlewares/errorHandlerMiddleware");
+const users = require("./routes/userRouter");
 
 const app = express();
 
@@ -12,6 +13,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// routes
+app.use("/app/api/users", users);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
